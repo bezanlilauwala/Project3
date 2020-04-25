@@ -1,0 +1,30 @@
+BUTTON CLICKS (Parameters show information that is available in the form that clicks the button):
+
+public static void loginButtonClicked(String username, String password)
+public static void newUserButtonClicked()                                       		//Opens a form to add the users username, password & email
+public static void createUserButtonClicked(String username, String password, String email)  	//Checks if the username or email already exist, then inserts the new user into the database, sends a verification email to the user and opens the Projects page
+public static void forgotUsernameButtonClicked(String email)    				//Gets the username for the corresponding email from the authentication database and calls sendForgotUsernameEmail()
+public static void forgotPasswordButtonClicked(String email)    ""
+public static void createNewProjectButtonClicked(int userID, String projectName, String description)  //Inserts the project into the authentication database, creates a new Project obj and opens the Deliverable Overview page
+public static void openExistingProjectButtonClicked(Project project)            		//Loads all table data from the project's database, creates objects and adds them to the projects Vector members
+public static int getMostRecentTableID(String tableName, String tableIDName)    		//Used to the the most recent ID added to the table
+
+PMS FUNCTIONS
+Utility:
+public static Connection getConnectionToAuthenticationDB()                      //Opens a Connection to the SQLite user authentication database and returns the Connection object
+public static void closeConnection(Connection conn)                             //Closes the Connection object
+public static long convertDateToLong(Date date)
+public static Date convertLongToDate(long dateLong)
+
+//Authentication
+public static boolean authenticate(String username, String password)            //Checks the authentication database for the username and checks that it matches the stored password
+public static int getUserID(String username)                                    //Returns the userID given the username in the authentication database
+public static boolean checkIfUsernameExists(String username)                    //Checks the authentication database for the username. Returns true if it exists.
+public static boolean checkPassword(String password)                            //Checks that the password meets microsoft standard password https://docs.microsoft.com/en-us/microsoft-365/admin/misc/password-policy-recommendations?view=o365-worldwide
+public static void insertUser(String username, String password, String email)   //Inserts the user into the authentication database
+public static void insertProject(String projectName, String description)        //Inserts the project into the Authentication database
+public static int getMostRecentProjectID()                                      //Returns the projectID of the most recently added Project in the authentication database
+public static void insertProjectAuthorization(int userID, int projectID)        //Inserts the project into the Authentication database
+public static Vector<Project> getAllProjects(int userID)                        //Returns a vector containing all the Projects for the user from the authentication database
+public static void sendForgotUsernameEmail(String username, String email)       //Sends an email to the user's email with their registered username
+public static void sendForgotPasswordEmail(String password, String email)       //Sends an email to the user's email with their registered password
